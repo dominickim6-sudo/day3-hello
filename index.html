@@ -1,112 +1,475 @@
 <!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        bg: '#0d1117',
-                        sidebar: '#161b22',
-                        surface: '#21262d',
-                        border: '#30363d',
-                        text: '#e6edf3',
-                        muted: '#8b949e',
-                        accent: '#e94560',
-                        'accent-hover': '#ff6b81',
-                    }
-                }
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ARCHITECT | Creative Developer Portfolio</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container": "#1c2026",
+                    "on-secondary-fixed": "#171c23",
+                    "on-secondary": "#2c3138",
+                    "tertiary-fixed": "#dae3ee",
+                    "secondary-container": "#42474f",
+                    "tertiary-fixed-dim": "#bec7d2",
+                    "error-container": "#93000a",
+                    "tertiary-container": "#89929c",
+                    "secondary-fixed": "#dee2ec",
+                    "primary-fixed": "#ffdadb",
+                    "secondary-fixed-dim": "#c2c7d0",
+                    "on-surface-variant": "#e2bebf",
+                    "surface-container-highest": "#31353c",
+                    "on-primary-container": "#5b0017",
+                    "on-background": "#dfe2eb",
+                    "surface": "#10141a",
+                    "on-secondary-fixed-variant": "#42474f",
+                    "surface-container-low": "#181c22",
+                    "primary-fixed-dim": "#ffb2b7",
+                    "error": "#ffb4ab",
+                    "on-error": "#690005",
+                    "surface-tint": "#ffb2b7",
+                    "secondary": "#c2c7d0",
+                    "inverse-on-surface": "#2d3137",
+                    "surface-container-high": "#262a31",
+                    "surface-container-lowest": "#0a0e14",
+                    "on-tertiary": "#29313a",
+                    "inverse-primary": "#b71d3f",
+                    "on-primary-fixed": "#40000e",
+                    "outline-variant": "#5a4042",
+                    "surface-bright": "#353940",
+                    "on-tertiary-container": "#222b33",
+                    "primary": "#ffb2b7",
+                    "surface-dim": "#10141a",
+                    "outline": "#a9898a",
+                    "on-tertiary-fixed-variant": "#3f4850",
+                    "on-error-container": "#ffdad6",
+                    "on-surface": "#dfe2eb",
+                    "tertiary": "#bec7d2",
+                    "inverse-surface": "#dfe2eb",
+                    "on-tertiary-fixed": "#141c24",
+                    "on-primary": "#67001c",
+                    "background": "#10141a",
+                    "primary-container": "#fc536d",
+                    "surface-variant": "#31353c",
+                    "on-secondary-container": "#b1b5be",
+                    "on-primary-fixed-variant": "#91002b"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
             }
-        }
+          },
+        },
+      }
     </script>
-    <style>
-        html { scroll-behavior: smooth; }
-        body { background-color: #0d1117; }
+<style>
+        body { background-color: #10141a; color: #dfe2eb; scroll-behavior: smooth; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #0a0e14; }
+        ::-webkit-scrollbar-thumb { background: #31353c; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #ffb2b7; }
+        .monolith-sidebar { position: fixed; left: 0; top: 0; height: 100vh; width: 220px; background-color: #1c2026; display: flex; flex-direction: column; padding: 40px 0; z-index: 100; }
+        .timeline-gradient { background: linear-gradient(to bottom, #5a404226 0%, transparent 100%); }
         @media (max-width: 768px) {
-            #sidebar { transform: translateX(-100%); }
-            #sidebar.open { transform: translateX(0); }
-            #main-content { margin-left: 0; }
+            .monolith-sidebar { display: none; }
+            .monolith-sidebar.mobile-open { display: flex; position: fixed; z-index: 200; }
         }
     </style>
 </head>
-<body class="text-text font-sans">
-    <!-- Sidebar -->
-    <aside id="sidebar" class="fixed top-0 left-0 h-full w-56 bg-sidebar border-r border-border flex flex-col p-6 z-40 transition-transform duration-300">
-        <!-- Profile -->
-        <div class="text-center mb-8">
-            <div class="w-28 h-28 rounded-full bg-surface mx-auto mb-3 overflow-hidden border-2 border-border">
-                <div class="w-full h-full flex items-center justify-center text-muted text-2xl">👤</div>
-            </div>
-            <h1 class="text-text font-bold text-lg">Your Name</h1>
-            <p class="text-muted text-sm">Full-Stack Developer</p>
-        </div>
-
-        <!-- Navigation -->
-        <nav class="flex flex-col gap-1 flex-1">
-            <a href="#about" class="nav-link active flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm transition-colors">
-                <span>🏠</span> About
+<body class="font-body selection:bg-primary selection:text-on-primary-fixed">
+<!-- Mobile TopAppBar (From JSON) -->
+<header class="md:hidden fixed top-0 w-full z-50 bg-[#10141a]/80 backdrop-blur-xl border-b border-[#5a4042]/15 flex justify-between items-center px-6 h-16 shadow-xl shadow-[#0a0e14]/40">
+<span class="text-xl font-black text-[#dfe2eb] font-headline">ARCHITECT</span>
+<button class="text-[#ffb2b7] active:opacity-70 transition-opacity">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+</header>
+<!-- SideNavBar (The Monolith Anchor - From JSON) -->
+<aside class="monolith-sidebar hidden md:flex font-['Manrope'] tracking-[-0.04em] antialiased">
+<div class="px-6 mb-8">
+<h1 class="text-2xl font-black text-[#dfe2eb] tracking-tighter">ARCHITECT</h1>
+<div class="mt-8 flex flex-col items-center">
+<div class="w-24 h-24 rounded-full overflow-hidden mb-4 border-2 border-outline-variant/20">
+<img alt="Profile Avatar" data-alt="high-quality cinematic headshot of a professional creative developer with soft studio lighting and dark moody background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuArQyEspjDcZ-e_cvVuVP3uU3bSiF0gQyAcTRgug0VfMalG2WoLk3ZPEm2SPuIhTm3FR5dc703rXYRpSjM-scpHT6SArowxWv5v6aEcu73JAmhe4L2wrGniSqtXpO8f4GohLgrdNv79xe_wrAIJ-Tk_AygOwvLcxxYPe1qIe3qwsMMSsu5JV1QO1cX7tRUindbxe50FDIqiN09QcwXfMyWGJLPxQXX_hU7ma2Db7h87sMvoNYzHzjw81a4G1h9-ZzEPoh1s0q9RwoxQ"/>
+</div>
+<p class="text-[#dfe2eb] font-bold text-lg">Your Name</p>
+<p class="text-primary text-xs uppercase tracking-widest opacity-80">Full-Stack Developer</p>
+</div>
+</div>
+<nav class="flex flex-col flex-grow mt-4">
+<a class="border-l-2 border-[#ffb2b7] bg-[#ffb2b7]/5 text-[#ffb2b7] font-bold py-3 px-6 transition-all flex items-center gap-3" href="#about">
+<span class="material-symbols-outlined text-sm" data-icon="person">person</span> About
             </a>
-            <a href="#projects" class="nav-link flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm text-muted hover:text-text transition-colors">
-                <span>💼</span> Projects
+<a class="text-[#89929c] py-3 px-6 hover:text-[#dfe2eb] hover:bg-[#31353c]/60 backdrop-blur-md transition-all duration-300 flex items-center gap-3" href="#projects">
+<span class="material-symbols-outlined text-sm" data-icon="grid_view">grid_view</span> Projects
             </a>
-            <a href="#resume" class="nav-link flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm text-muted hover:text-text transition-colors">
-                <span>📄</span> Resume
+<a class="text-[#89929c] py-3 px-6 hover:text-[#dfe2eb] hover:bg-[#31353c]/60 backdrop-blur-md transition-all duration-300 flex items-center gap-3" href="#resume">
+<span class="material-symbols-outlined text-sm" data-icon="history_edu">history_edu</span> Resume
             </a>
-            <a href="#blog" class="nav-link flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm text-muted hover:text-text transition-colors">
-                <span>📝</span> Blog
+<a class="text-[#89929c] py-3 px-6 hover:text-[#dfe2eb] hover:bg-[#31353c]/60 backdrop-blur-md transition-all duration-300 flex items-center gap-3" href="#blog">
+<span class="material-symbols-outlined text-sm" data-icon="article">article</span> Blog
             </a>
-            <a href="#contact" class="nav-link flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm text-muted hover:text-text transition-colors">
-                <span>📬</span> Contact
+<a class="text-[#89929c] py-3 px-6 hover:text-[#dfe2eb] hover:bg-[#31353c]/60 backdrop-blur-md transition-all duration-300 flex items-center gap-3" href="#contact">
+<span class="material-symbols-outlined text-sm" data-icon="mail">mail</span> Contact
             </a>
-        </nav>
+</nav>
+<div class="px-6 pt-10 mt-auto">
+<div class="flex justify-center gap-4 text-[#89929c] mb-6">
+<a class="hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined" data-icon="code">code</span></a>
+<a class="hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined" data-icon="terminal">terminal</span></a>
+<a class="hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined" data-icon="alternate_email">alternate_email</span></a>
+</div>
+<button class="w-full py-3 bg-primary-container text-on-primary-fixed font-bold text-xs uppercase tracking-widest rounded-lg hover:shadow-[0_0_20px_rgba(252,83,109,0.3)] transition-all">
+                Get in Touch
+            </button>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="md:ml-[220px] pt-16 md:pt-0 min-h-screen bg-surface">
+<!-- About Section -->
+<section class="max-w-5xl mx-auto px-8 py-24 md:py-32" id="about">
+<div class="grid md:grid-cols-12 gap-12 items-center">
+<div class="md:col-span-7">
+<span class="font-label text-xs uppercase tracking-[0.2em] text-primary mb-4 block">Identity &amp; Purpose</span>
+<h2 class="font-headline text-5xl md:text-7xl font-extrabold text-on-surface tracking-[-0.04em] mb-8 leading-none">Creative Developer.</h2>
+<p class="text-lg text-on-surface-variant leading-relaxed mb-10 font-light">
+                        I bridge the gap between technical architecture and aesthetic design. With a focus on modern web ecosystems, I craft high-performance applications that feel intuitive and look cinematic. Based in the digital void, building the future of web experiences.
+                    </p>
+<div class="flex flex-wrap gap-3">
+<span class="px-4 py-2 bg-surface-container-highest text-secondary text-xs font-semibold rounded-full border border-outline-variant/10">JavaScript</span>
+<span class="px-4 py-2 bg-surface-container-highest text-secondary text-xs font-semibold rounded-full border border-outline-variant/10">TypeScript</span>
+<span class="px-4 py-2 bg-surface-container-highest text-secondary text-xs font-semibold rounded-full border border-outline-variant/10">React</span>
+<span class="px-4 py-2 bg-surface-container-highest text-secondary text-xs font-semibold rounded-full border border-outline-variant/10">Node.js</span>
+<span class="px-4 py-2 bg-surface-container-highest text-secondary text-xs font-semibold rounded-full border border-outline-variant/10">Python</span>
+<span class="px-4 py-2 bg-surface-container-highest text-secondary text-xs font-semibold rounded-full border border-outline-variant/10">Docker</span>
+<span class="px-4 py-2 bg-surface-container-highest text-secondary text-xs font-semibold rounded-full border border-outline-variant/10">Git</span>
+</div>
+</div>
+<div class="md:col-span-5 relative">
+<div class="aspect-square bg-surface-container rounded-2xl overflow-hidden shadow-2xl relative z-10">
+<img class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700 opacity-80 hover:opacity-100" data-alt="close-up of clean minimalist coding workstation with mechanical keyboard and soft amber desk light against dark background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuArQyEspjDcZ-e_cvVuVP3uU3bSiF0gQyAcTRgug0VfMalG2WoLk3ZPEm2SPuIhTm3FR5dc703rXYRpSjM-scpHT6SArowxWv5v6aEcu73JAmhe4L2wrGniSqtXpO8f4GohLgrdNv79xe_wrAIJ-Tk_AygOwvLcxxYPe1qIe3qwsMMSsu5JV1QO1cX7tRUindbxe50FDIqiN09QcwXfMyWGJLPxQXX_hU7ma2Db7h87sMvoNYzHzjw81a4G1h9-ZzEPoh1s0q9RwoxQ"/>
+</div>
+<div class="absolute -bottom-6 -right-6 w-full h-full border-2 border-primary/20 rounded-2xl -z-0"></div>
+</div>
+</div>
+</section>
+<!-- Projects Section (Bento Grid Style) -->
+<section class="bg-surface-container-lowest py-24 md:py-32" id="projects">
+<div class="max-w-6xl mx-auto px-8">
+<div class="flex justify-between items-end mb-16">
+<div>
+<span class="font-label text-xs uppercase tracking-[0.2em] text-primary mb-2 block">Selected Works</span>
+<h2 class="font-headline text-4xl font-bold text-on-surface">Curated Digital Artifacts</h2>
+</div>
+<a class="text-primary text-sm font-bold flex items-center gap-2 group" href="#">
+                        VIEW ARCHIVE <span class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform" data-icon="arrow_forward">arrow_forward</span>
+</a>
+</div>
+<div class="grid md:grid-cols-2 gap-8">
+<!-- Project 1 -->
+<div class="group bg-surface-container-low rounded-xl overflow-hidden hover:bg-surface-container transition-all duration-500">
+<div class="h-64 overflow-hidden">
+<img class="w-full h-full object-cover opacity-70 group-hover:scale-105 group-hover:opacity-100 transition-all duration-700" data-alt="ultra-modern dashboard UI with glowing charts and neon accents on a dark matte surface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuArQyEspjDcZ-e_cvVuVP3uU3bSiF0gQyAcTRgug0VfMalG2WoLk3ZPEm2SPuIhTm3FR5dc703rXYRpSjM-scpHT6SArowxWv5v6aEcu73JAmhe4L2wrGniSqtXpO8f4GohLgrdNv79xe_wrAIJ-Tk_AygOwvLcxxYPe1qIe3qwsMMSsu5JV1QO1cX7tRUindbxe50FDIqiN09QcwXfMyWGJLPxQXX_hU7ma2Db7h87sMvoNYzHzjw81a4G1h9-ZzEPoh1s0q9RwoxQ"/>
+</div>
+<div class="p-8">
+<div class="flex items-center gap-3 mb-4">
+<span class="text-2xl">⚡</span>
+<h3 class="text-xl font-bold text-on-surface">Velocity Analytics</h3>
+</div>
+<p class="text-on-surface-variant text-sm mb-6 leading-relaxed">A real-time data engine processing millions of requests per second with sub-millisecond latency. Built for scale.</p>
+<div class="flex flex-wrap gap-2 mb-8">
+<span class="text-[10px] font-bold tracking-widest text-primary/60 border border-primary/20 px-2 py-1 rounded">REACT</span>
+<span class="text-[10px] font-bold tracking-widest text-primary/60 border border-primary/20 px-2 py-1 rounded">GO</span>
+<span class="text-[10px] font-bold tracking-widest text-primary/60 border border-primary/20 px-2 py-1 rounded">REDIS</span>
+</div>
+<a class="text-xs font-black uppercase tracking-tighter text-on-surface flex items-center gap-2 group-hover:text-primary transition-colors" href="#">
+                                EXPLORE CASE STUDY <span class="material-symbols-outlined text-xs" data-icon="open_in_new">open_in_new</span>
+</a>
+</div>
+</div>
+<!-- Project 2 -->
+<div class="group bg-surface-container-low rounded-xl overflow-hidden hover:bg-surface-container transition-all duration-500">
+<div class="h-64 overflow-hidden">
+<img class="w-full h-full object-cover opacity-70 group-hover:scale-105 group-hover:opacity-100 transition-all duration-700" data-alt="abstract geometric 3D shapes with soft iridescent textures and deep shadows in a dark void space" src="https://lh3.googleusercontent.com/aida-public/AB6AXuArQyEspjDcZ-e_cvVuVP3uU3bSiF0gQyAcTRgug0VfMalG2WoLk3ZPEm2SPuIhTm3FR5dc703rXYRpSjM-scpHT6SArowxWv5v6aEcu73JAmhe4L2wrGniSqtXpO8f4GohLgrdNv79xe_wrAIJ-Tk_AygOwvLcxxYPe1qIe3qwsMMSsu5JV1QO1cX7tRUindbxe50FDIqiN09QcwXfMyWGJLPxQXX_hU7ma2Db7h87sMvoNYzHzjw81a4G1h9-ZzEPoh1s0q9RwoxQ"/>
+</div>
+<div class="p-8">
+<div class="flex items-center gap-3 mb-4">
+<span class="text-2xl">🎨</span>
+<h3 class="text-xl font-bold text-on-surface">Nebula Design System</h3>
+</div>
+<p class="text-on-surface-variant text-sm mb-6 leading-relaxed">An atomic design library focusing on accessibility and atmospheric depth for creative professionals.</p>
+<div class="flex flex-wrap gap-2 mb-8">
+<span class="text-[10px] font-bold tracking-widest text-primary/60 border border-primary/20 px-2 py-1 rounded">FIGMA</span>
+<span class="text-[10px] font-bold tracking-widest text-primary/60 border border-primary/20 px-2 py-1 rounded">TAILWIND</span>
+<span class="text-[10px] font-bold tracking-widest text-primary/60 border border-primary/20 px-2 py-1 rounded">STORYBOOK</span>
+</div>
+<a class="text-xs font-black uppercase tracking-tighter text-on-surface flex items-center gap-2 group-hover:text-primary transition-colors" href="#">
+                                EXPLORE CASE STUDY <span class="material-symbols-outlined text-xs" data-icon="open_in_new">open_in_new</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Resume Section (The Pulse Timeline) -->
+<section class="py-24 md:py-32" id="resume">
+<div class="max-w-5xl mx-auto px-8">
+<div class="grid md:grid-cols-2 gap-16">
+<!-- Experience -->
+<div>
+<h2 class="font-headline text-3xl font-bold mb-12 flex items-center gap-4">
+<span class="material-symbols-outlined text-primary" data-icon="work">work</span> Experience
+                        </h2>
+<div class="relative pl-8 border-l-2 border-outline-variant/20 timeline-gradient">
+<!-- Node 1 -->
+<div class="mb-12 relative">
+<div class="absolute -left-[41px] top-1 w-4 h-4 bg-surface-container rounded-full border-2 border-primary flex items-center justify-center">
+<div class="w-1 h-1 bg-primary rounded-full animate-pulse"></div>
+</div>
+<span class="font-label text-[10px] tracking-[0.2em] text-primary mb-1 block">2022 — PRESENT</span>
+<h4 class="text-lg font-bold text-on-surface">Senior Developer</h4>
+<p class="text-sm text-secondary mb-3">ABC Company</p>
+<p class="text-sm text-on-surface-variant leading-relaxed">Leading core frontend architecture and mentoring junior developers in a fast-paced agile environment.</p>
+</div>
+<!-- Node 2 -->
+<div class="mb-12 relative">
+<div class="absolute -left-[41px] top-1 w-4 h-4 bg-surface-container rounded-full border-2 border-outline-variant"></div>
+<span class="font-label text-[10px] tracking-[0.2em] text-primary mb-1 block">2020 — 2022</span>
+<h4 class="text-lg font-bold text-on-surface">Full-Stack Engineer</h4>
+<p class="text-sm text-secondary mb-3">XYZ Corp</p>
+<p class="text-sm text-on-surface-variant leading-relaxed">Developed and maintained multiple microservices handling high-volume traffic using Node.js and AWS.</p>
+</div>
+<!-- Node 3 -->
+<div class="relative">
+<div class="absolute -left-[41px] top-1 w-4 h-4 bg-surface-container rounded-full border-2 border-outline-variant"></div>
+<span class="font-label text-[10px] tracking-[0.2em] text-primary mb-1 block">2018 — 2020</span>
+<h4 class="text-lg font-bold text-on-surface">Junior Developer</h4>
+<p class="text-sm text-secondary mb-3">DEF Startup</p>
+<p class="text-sm text-on-surface-variant leading-relaxed">Built the initial MVP for a fintech platform, focusing on user-centric design and rapid prototyping.</p>
+</div>
+</div>
+</div>
+<!-- Education -->
+<div>
+<h2 class="font-headline text-3xl font-bold mb-12 flex items-center gap-4">
+<span class="material-symbols-outlined text-primary" data-icon="school">school</span> Education
+                        </h2>
+<div class="relative pl-8 border-l-2 border-outline-variant/20">
+<div class="mb-12 relative">
+<div class="absolute -left-[41px] top-1 w-4 h-4 bg-surface-container rounded-full border-2 border-primary"></div>
+<span class="font-label text-[10px] tracking-[0.2em] text-primary mb-1 block">2014 — 2018</span>
+<h4 class="text-lg font-bold text-on-surface">B.S. Computer Science</h4>
+<p class="text-sm text-secondary">Korea University</p>
+<p class="text-sm text-on-surface-variant mt-2">Specialization in Distributed Systems and UI/UX Research.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Blog Section -->
+<section class="bg-surface-container-lowest py-24 md:py-32" id="blog">
+<div class="max-w-5xl mx-auto px-8">
+<div class="flex justify-between items-center mb-16">
+<h2 class="font-headline text-4xl font-bold">The Journal</h2>
+<div class="h-[1px] flex-grow mx-8 bg-outline-variant/15"></div>
+</div>
+<div class="space-y-8">
+<!-- Blog Card 1 -->
+<article class="group grid md:grid-cols-12 gap-8 items-center p-6 rounded-2xl hover:bg-surface-container transition-all duration-300">
+<div class="md:col-span-3 aspect-video bg-surface rounded-lg overflow-hidden">
+<img class="w-full h-full object-cover grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500" data-alt="abstract react.js logo glowing in a dark digital space with blue and purple light particles" src="https://lh3.googleusercontent.com/aida-public/AB6AXuArQyEspjDcZ-e_cvVuVP3uU3bSiF0gQyAcTRgug0VfMalG2WoLk3ZPEm2SPuIhTm3FR5dc703rXYRpSjM-scpHT6SArowxWv5v6aEcu73JAmhe4L2wrGniSqtXpO8f4GohLgrdNv79xe_wrAIJ-Tk_AygOwvLcxxYPe1qIe3qwsMMSsu5JV1QO1cX7tRUindbxe50FDIqiN09QcwXfMyWGJLPxQXX_hU7ma2Db7h87sMvoNYzHzjw81a4G1h9-ZzEPoh1s0q9RwoxQ"/>
+</div>
+<div class="md:col-span-9">
+<div class="flex items-center gap-4 mb-2">
+<span class="text-[10px] font-bold text-primary tracking-widest uppercase">React</span>
+<span class="w-1 h-1 bg-outline-variant rounded-full"></span>
+<span class="text-[10px] text-secondary tracking-widest uppercase">Oct 12, 2024</span>
+</div>
+<h3 class="text-2xl font-bold text-on-surface mb-3 group-hover:text-primary transition-colors">Architecture for the Infinite Scroll</h3>
+<p class="text-on-surface-variant text-sm line-clamp-2">How we optimized virtualization for a feed processing 10k items per second without breaking the browser main thread.</p>
+</div>
+</article>
+<!-- Blog Card 2 -->
+<article class="group grid md:grid-cols-12 gap-8 items-center p-6 rounded-2xl hover:bg-surface-container transition-all duration-300">
+<div class="md:col-span-3 aspect-video bg-surface rounded-lg overflow-hidden">
+<img class="w-full h-full object-cover grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500" data-alt="conceptual photo representing devops with interconnected glass spheres and soft red lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuArQyEspjDcZ-e_cvVuVP3uU3bSiF0gQyAcTRgug0VfMalG2WoLk3ZPEm2SPuIhTm3FR5dc703rXYRpSjM-scpHT6SArowxWv5v6aEcu73JAmhe4L2wrGniSqtXpO8f4GohLgrdNv79xe_wrAIJ-Tk_AygOwvLcxxYPe1qIe3qwsMMSsu5JV1QO1cX7tRUindbxe50FDIqiN09QcwXfMyWGJLPxQXX_hU7ma2Db7h87sMvoNYzHzjw81a4G1h9-ZzEPoh1s0q9RwoxQ"/>
+</div>
+<div class="md:col-span-9">
+<div class="flex items-center gap-4 mb-2">
+<span class="text-[10px] font-bold text-primary tracking-widest uppercase">DevOps</span>
+<span class="w-1 h-1 bg-outline-variant rounded-full"></span>
+<span class="text-[10px] text-secondary tracking-widest uppercase">Sep 28, 2024</span>
+</div>
+<h3 class="text-2xl font-bold text-on-surface mb-3 group-hover:text-primary transition-colors">The Cost of Invisible Infrastructure</h3>
+<p class="text-on-surface-variant text-sm line-clamp-2">Managing complexity in serverless environments: Lessons learned from building a global content delivery network.</p>
+</div>
+</article>
+</div>
+</div>
+</section>
+<!-- Contact Section -->
+<section class="py-24 md:py-32" id="contact">
+<div class="max-w-5xl mx-auto px-8">
+<div class="grid md:grid-cols-2 gap-16">
+<div>
+<h2 class="font-headline text-4xl font-bold text-on-surface mb-8">Let's create something monolithically great.</h2>
+<p class="text-on-surface-variant mb-12 leading-relaxed">Currently accepting new projects and consulting opportunities. Reach out via the form or through the KakaoTalk quick link for a faster response.</p>
+<div class="space-y-6">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-icon="alternate_email">alternate_email</span>
+</div>
+<div>
+<p class="text-[10px] text-secondary uppercase font-bold tracking-widest">Email</p>
+<p class="text-on-surface">hello@architect.dev</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-icon="location_on">location_on</span>
+</div>
+<div>
+<p class="text-[10px] text-secondary uppercase font-bold tracking-widest">Base</p>
+<p class="text-on-surface">Seoul, South Korea</p>
+</div>
+</div>
+</div>
+<!-- Custom Styled Kakao Button -->
+<div class="mt-12">
+<button class="flex items-center gap-3 px-8 py-4 bg-tertiary-container text-on-tertiary-fixed font-bold rounded-lg hover:bg-[#FEE500] hover:text-[#3C1E1E] transition-all duration-300 shadow-lg shadow-black/20 group">
+<span class="material-symbols-outlined fill" data-icon="chat_bubble" style="font-variation-settings: 'FILL' 1;">chat_bubble</span>
+                                KAKAOTALK CONSULTATION
+                            </button>
+</div>
+</div>
+<div class="bg-surface-container p-8 rounded-2xl shadow-2xl border border-outline-variant/10">
+<form class="space-y-6">
+<div>
+<label class="text-[10px] font-bold text-secondary tracking-widest uppercase mb-2 block">Full Name</label>
+<input class="w-full bg-surface-container-highest border-none rounded-lg focus:ring-2 focus:ring-primary text-on-surface placeholder:text-secondary/30" placeholder="John Doe" type="text"/>
+</div>
+<div>
+<label class="text-[10px] font-bold text-secondary tracking-widest uppercase mb-2 block">Email Address</label>
+<input class="w-full bg-surface-container-highest border-none rounded-lg focus:ring-2 focus:ring-primary text-on-surface placeholder:text-secondary/30" placeholder="john@example.com" type="email"/>
+</div>
+<div>
+<label class="text-[10px] font-bold text-secondary tracking-widest uppercase mb-2 block">Message</label>
+<textarea class="w-full bg-surface-container-highest border-none rounded-lg focus:ring-2 focus:ring-primary text-on-surface placeholder:text-secondary/30" placeholder="Tell me about your project..." rows="5"></textarea>
+</div>
+<button class="w-full py-4 bg-primary text-on-primary font-black uppercase tracking-[0.1em] rounded-lg hover:bg-primary/90 transition-colors">
+                                SEND MESSAGE
+                            </button>
+</form>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer (From JSON) -->
+<footer class="w-full py-12 px-8 bg-transparent">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+<span class="font-['Inter'] text-[0.6875rem] uppercase tracking-[0.1em] text-[#89929c]">
+                    © 2024 THE MIDNIGHT MONOLITH. ALL RIGHTS RESERVED.
+                </span>
+<div class="flex gap-8">
+<a class="font-['Inter'] text-[0.6875rem] uppercase tracking-[0.1em] text-[#89929c] hover:text-[#ffb2b7] underline underline-offset-4 decoration-2 transition-all" href="#">Journal</a>
+<a class="font-['Inter'] text-[0.6875rem] uppercase tracking-[0.1em] text-[#89929c] hover:text-[#ffb2b7] underline underline-offset-4 decoration-2 transition-all" href="#">Contact</a>
+<a class="font-['Inter'] text-[0.6875rem] uppercase tracking-[0.1em] text-[#89929c] hover:text-[#ffb2b7] underline underline-offset-4 decoration-2 transition-all" href="#">Archive</a>
+</div>
+</div>
+</footer>
+</main>
+<!-- FAB Suppression Rule Followed: No FAB rendered on detailed portfolio page -->
+<script>
+    // Mobile menu toggle
+    const menuBtn = document.querySelector('header button');
+    const sidebar = document.querySelector('.monolith-sidebar');
+    if (menuBtn && sidebar) {
+        menuBtn.addEventListener('click', () => {
+            sidebar.classList.toggle('hidden');
+            sidebar.classList.toggle('flex');
+            if (!sidebar.classList.contains('hidden')) {
+                sidebar.style.position = 'fixed';
+                sidebar.style.zIndex = '200';
+                sidebar.style.top = '0';
+                sidebar.style.left = '0';
+                sidebar.style.height = '100vh';
+            }
+        });
+    }
 
-        <!-- Social -->
-        <div class="flex justify-center gap-3 pt-4 border-t border-border">
-            <a href="#" class="w-8 h-8 bg-surface rounded-lg flex items-center justify-center text-muted hover:text-accent transition-colors text-xs">GH</a>
-            <a href="#" class="w-8 h-8 bg-surface rounded-lg flex items-center justify-center text-muted hover:text-accent transition-colors text-xs">LI</a>
-            <a href="#" class="w-8 h-8 bg-surface rounded-lg flex items-center justify-center text-muted hover:text-accent transition-colors text-xs">EM</a>
-        </div>
-    </aside>
+    // Close sidebar on nav click (mobile)
+    document.querySelectorAll('.monolith-sidebar nav a').forEach(link => {
+        link.addEventListener('click', () => {
+            if (window.innerWidth < 768 && sidebar) {
+                sidebar.classList.add('hidden');
+                sidebar.classList.remove('flex');
+            }
+        });
+    });
 
-    <!-- Mobile hamburger -->
-    <button id="menu-toggle" class="md:hidden fixed top-4 left-4 z-50 w-10 h-10 bg-sidebar border border-border rounded-lg flex items-center justify-center text-text">
-        ☰
-    </button>
+    // Active nav link on scroll (Intersection Observer)
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.monolith-sidebar nav a');
 
-    <!-- Main Content -->
-    <main id="main-content" class="md:ml-56 min-h-screen">
-        <div class="max-w-4xl mx-auto px-6 md:px-12 py-12">
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const id = entry.target.getAttribute('id');
+                navLinks.forEach(link => {
+                    link.className = 'text-[#89929c] py-3 px-6 hover:text-[#dfe2eb] hover:bg-[#31353c]/60 backdrop-blur-md transition-all duration-300 flex items-center gap-3';
+                });
+                const activeLink = document.querySelector(`.monolith-sidebar nav a[href="#${id}"]`);
+                if (activeLink) {
+                    activeLink.className = 'border-l-2 border-[#ffb2b7] bg-[#ffb2b7]/5 text-[#ffb2b7] font-bold py-3 px-6 transition-all flex items-center gap-3';
+                }
+            }
+        });
+    }, { threshold: 0.3 });
 
-            <!-- About Section (placeholder) -->
-            <section id="about" class="section-content mb-20">
-                <p class="text-muted text-sm">About section coming soon</p>
-            </section>
+    sections.forEach(section => observer.observe(section));
 
-            <!-- Projects Section (placeholder) -->
-            <section id="projects" class="section-content mb-20">
-                <p class="text-muted text-sm">Projects section coming soon</p>
-            </section>
+    // Contact form -> mailto
+    const contactForm = document.querySelector('#contact form');
+    if (contactForm) {
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const inputs = contactForm.querySelectorAll('input, textarea');
+            const name = inputs[0] ? inputs[0].value : '';
+            const email = inputs[1] ? inputs[1].value : '';
+            const message = inputs[2] ? inputs[2].value : '';
+            const subject = encodeURIComponent('포트폴리오 문의 - ' + name);
+            const body = encodeURIComponent('이름: ' + name + '\n이메일: ' + email + '\n\n' + message);
+            window.location.href = 'mailto:hello@architect.dev?subject=' + subject + '&body=' + body;
+        });
+    }
 
-            <!-- Resume Section (placeholder) -->
-            <section id="resume" class="section-content mb-20">
-                <p class="text-muted text-sm">Resume section coming soon</p>
-            </section>
-
-            <!-- Blog Section (placeholder) -->
-            <section id="blog" class="section-content mb-20">
-                <p class="text-muted text-sm">Blog section coming soon</p>
-            </section>
-
-            <!-- Contact Section (placeholder) -->
-            <section id="contact" class="section-content mb-20">
-                <p class="text-muted text-sm">Contact section coming soon</p>
-            </section>
-
-        </div>
-    </main>
-</body>
-</html>
+    // KakaoTalk button link
+    const kakaoBtn = document.querySelector('#contact button');
+    // The KakaoTalk button is the one with "KAKAOTALK CONSULTATION" text
+    document.querySelectorAll('#contact button').forEach(btn => {
+        if (btn.textContent.includes('KAKAOTALK')) {
+            btn.addEventListener('click', () => {
+                window.open('https://pf.kakao.com/_YOUR_CHANNEL_ID', '_blank');
+            });
+            btn.type = 'button';
+        }
+    });
+</script>
+</body></html>
